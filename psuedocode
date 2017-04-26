@@ -9,13 +9,16 @@ assignOrExpr(x){
 	if assign go assign(x)
 	if expression go expr(x)
 }
-Assign(){
+Assign(){ //this should be checking id = expr;
 	For(the length of that vector){
 		 call id();
 		if(id() is valid)
 			check if the next string is ‘=’
 		if(it is ‘=’)
 			call expr();
+		if(expr() is valid)
+			if (the next is ‘;’)
+				return valid
 	}
 }
 
@@ -29,25 +32,34 @@ Assign(){
 
 
 
-Expr(){
+Expr(){ // this should be checking id op id
 	For(the length of that vector){
-		If x[i] has ‘(‘ 
+		If (x[i] has ‘(‘){ 
 			Call expr()
 			If expr is valid
 				If the next has ‘)”
-				Return valid
-		Call id();
-		If(id() is valid)
-			Call op();
-		If(op() is valid)
-			Call id();
-		If(there is still more from the vector)
-			Call expr2();
-			If expr2() is valid 
-			Return valid
-		else if id() is valid
-			return valid
+		}
+
+		Else Call id()
+		If (id() is valid or the expression in ( ))
+			Call op()
+		If op() is valid 
+			If (x[i] has ‘(‘ ){ 
+				Call expr()
+				If expr is valid
+					If the next has ‘)”
+			}
+			Else call id();
+		
+			If(there is still more from the vector) // this part should be checking if there is 
+				Call expr2();			//more to see in expr()
+				If (expr2() is valid)
+					Return valid;
+			else if id() is valid
+				return valid
+			
 	}
+
 
 Op(){
 	If(x[i] is * | / | + | - | %)
@@ -56,21 +68,27 @@ Op(){
 
 
 
-
-
-
-Expr2(){
+Expr2(){ // this will only be checking {op id}*
 	Call op();
-	If(op() is valid)
-		Call id();
+	If(op() is valid){
+		If (x[i] has ‘(‘ ) { 
+				Call expr()
+				If expr is valid
+					If the next has ‘)”
+			}
+		Else call id();
+	}
 	If (there is still more from the vector)
 		Call expr2();
-		If expr2() is valid();
-			Return valid
-	Else if id() is valid
+		If expr2() is valid
+			Return valid;
+	Else if( id()  or the exprecion in ( ) is valid)
 		Return valid
 	
 }
+
+
+
 Id(){	
 	If (x[i] is a – Z or _ )
 		If there is more to check 
@@ -89,3 +107,5 @@ Id2(){
 	}
 }
 		
+		
+
