@@ -1,0 +1,91 @@
+Readtext(){
+Open file
+Get first line and put it in vector x
+Call assignOrExpr(x)
+
+}
+assignOrExpr(x){
+	check if the line is an assign or expression
+	if assign go assign(x)
+	if expression go expr(x)
+}
+Assign(){
+	For(the length of that vector){
+		 call id();
+		if(id() is valid)
+			check if the next string is ‘=’
+		if(it is ‘=’)
+			call expr();
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+Expr(){
+	For(the length of that vector){
+		If x[i] has ‘(‘ 
+			Call expr()
+			If expr is valid
+				If the next has ‘)”
+				Return valid
+		Call id();
+		If(id() is valid)
+			Call op();
+		If(op() is valid)
+			Call id();
+		If(there is still more from the vector)
+			Call expr2();
+			If expr2() is valid 
+			Return valid
+		else if id() is valid
+			return valid
+	}
+
+Op(){
+	If(x[i] is * | / | + | - | %)
+		Return Valid
+}
+
+
+
+
+
+
+Expr2(){
+	Call op();
+	If(op() is valid)
+		Call id();
+	If (there is still more from the vector)
+		Call expr2();
+		If expr2() is valid();
+			Return valid
+	Else if id() is valid
+		Return valid
+	
+}
+Id(){	
+	If (x[i] is a – Z or _ )
+		If there is more to check 
+			Go to id2();
+	If id2() is good
+	Return good :
+}
+
+
+
+Id2(){
+	If(x[i] is a-Z or _ or 0-9){
+		If there is more to check 
+			Go to id2();
+		Else return good;
+	}
+}
+		
